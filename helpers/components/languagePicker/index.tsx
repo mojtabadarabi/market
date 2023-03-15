@@ -13,14 +13,13 @@ export default function LanguagePicker() {
     const router = useRouter()
 
     return (
-        <FormControl fullWidth>
+        <FormControl >
             {/*<InputLabel id="demo-simple-select-label">Age</InputLabel>*/}
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 value={i18n?.language}
                 label="Age"
                 sx={{
+                    width:'fitContent',
                     '& div': {display: 'flex', alignItems: 'center', gap: '2',direction:'ltr'},
                     boxShadow: 'none',
                     '.MuiOutlinedInput-notchedOutline': {border: 0, display: 'none !important'}

@@ -4,7 +4,8 @@ import {State} from "./types";
 import i18next from "i18next";
 
 const initialState: Partial<State> = {
-    lang: 'fa'
+    lang: 'fa',
+    openMenu:false
 }
 
 export const MainSlice = createSlice({
@@ -14,8 +15,11 @@ export const MainSlice = createSlice({
         changeLang(state, action: PayloadAction<string>) {
             state.lang = action.payload;
         },
+        toggleMenu(state) {
+            state.openMenu = !state.openMenu;
+        },
     },
 })
 
-export const {changeLang} = MainSlice.actions
+export const {toggleMenu} = MainSlice.actions
 export default MainSlice.reducer
