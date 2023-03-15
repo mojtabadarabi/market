@@ -9,8 +9,11 @@ import {getCookies, removeCookies, setCookies} from "cookies-next";
 import NApp from 'next/app'
 import ServerSideTranslations from "@/helpers/serverSideTranslations";
 import type {AppContext} from 'next/app';
+import {useEffect, useState} from "react";
+import Router from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
+
   const {store, props} = wrapper.useWrappedStore(pageProps);
   return <Provider store={store} ><PublicLayout><Component {...pageProps} /></PublicLayout></Provider>
 }
