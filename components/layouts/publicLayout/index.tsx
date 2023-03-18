@@ -1,6 +1,6 @@
 import PublicHeader from '@/components/headers/publicHeader'
 import PublicFooter from '@/components/footers/publicFooter'
-import {i18n} from "next-i18next";
+import {i18n, useTranslation} from "next-i18next";
 import Head from "next/head";
 import {useEffect, useState} from "react";
 import Router from "next/router";
@@ -14,14 +14,15 @@ import {BsFillBellFill, BsFillCartFill, BsPersonCircle} from "react-icons/bs";
 import {AiFillHeart} from "react-icons/ai";
 import {toggleMenu} from "@/mainSlice/slice";
 
-export default function Index({children}: { children: JSX.Element }) {
+export default function Index({children,title}: { children: JSX.Element,title:string }) {
     const [loading, setLoading] = useState(false);
+    const {t} = useTranslation('common')
     const dispatch = useAppDispatch()
-    const onLangChangeStart=()=>{
+    const onLangChangeStart = () => {
         dispatch(toggleMenu())
         setLoading(true)
     }
-    const onLangChangeEnd=()=>{
+    const onLangChangeEnd = () => {
         setLoading(false)
     }
 
@@ -35,14 +36,13 @@ export default function Index({children}: { children: JSX.Element }) {
             Router.events.off('routeChangeError', () => onLangChangeEnd());
         };
     }, [Router.events]);
-
     return (
         <div>
             <BurgerMenu>
                 <div className='flex flex-col items-center justify-center '>
                     <div className='flex items-center justify-start w-full' dir={i18n?.dir()}>
-                        <IconButton >
-                            <BsPersonCircle style={{width:'1.7em',height:'1.7em'}}/>
+                        <IconButton>
+                            <BsPersonCircle style={{width: '1.7em', height: '1.7em'}}/>
                         </IconButton>
                         <div className='text-start'>
                             <span className=' block  font-bold text-sm'>Name</span>
@@ -50,19 +50,19 @@ export default function Index({children}: { children: JSX.Element }) {
                         </div>
                     </div>
                     <div className='flex '>
-                    <LanguagePicker/>
-                    <IconButton>
-                        <HiOutlineLightBulb/>
-                    </IconButton>
-                    <IconButton>
-                        <BsFillBellFill/>
-                    </IconButton>
-                    <IconButton>
-                        <AiFillHeart/>
-                    </IconButton>
-                    <IconButton>
-                        <BsFillCartFill/>
-                    </IconButton>
+                        <LanguagePicker/>
+                        <IconButton>
+                            <HiOutlineLightBulb/>
+                        </IconButton>
+                        <IconButton>
+                            <BsFillBellFill/>
+                        </IconButton>
+                        <IconButton>
+                            <AiFillHeart/>
+                        </IconButton>
+                        <IconButton>
+                            <BsFillCartFill/>
+                        </IconButton>
 
                     </div>
 
@@ -72,8 +72,8 @@ export default function Index({children}: { children: JSX.Element }) {
                 loading && <LoadingMainPage/>
             }
             <div dir={i18n?.dir()} className='px-4 '>
-                <Head>
-                    <title>title</title>
+                <Head >
+                    <title >{`${title} | ${t('app_name')}`}</title>
                 </Head>
                 <PublicHeader/>
                 <div className=''>

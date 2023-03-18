@@ -13,9 +13,8 @@ import {useEffect, useState} from "react";
 import Router from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
-
   const {store, props} = wrapper.useWrappedStore(pageProps);
-  return <Provider store={store} ><PublicLayout><Component {...pageProps} /></PublicLayout></Provider>
+  return <Provider store={store} ><PublicLayout title={pageProps.title}><Component {...pageProps} /></PublicLayout></Provider>
 }
 App.getInitialProps = async (appContext: AppContext) => {
   if (appContext.ctx.err)return {err:appContext.ctx.err}

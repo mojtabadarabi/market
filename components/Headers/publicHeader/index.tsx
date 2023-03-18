@@ -23,10 +23,10 @@ export default function Index() {
     return (
         <div className='block items-center justify-between p-3 md:block lg:flex '>
 
-            <div className='flex items-center justify-start md:gap-10 gap-2 lg:w-1/2 md:w-full w-full'>
+            <div className='grid md:flex grid-cols-2 items-center justify-start md:gap-10 gap-2 lg:w-1/2 md:w-full w-full'>
                 <h1 className='text-3xl font-bold text-blue-600'>مارکت</h1>
                 <SearchMain/>
-                <IconButton onClick={()=>dispatch(toggleMenu())} className='sm:hidden block'><GiHamburgerMenu/></IconButton>
+                <IconButton sx={{gridColumn:'2',gridRow:'1',justifyContent:'flex-end'}} onClick={()=>dispatch(toggleMenu())} className='sm:hidden flex'><GiHamburgerMenu/></IconButton>
             </div>
             <div className='flex  md:gap-2 gap-1 items-center justify-end sm:flex hidden'>
                 <LanguagePicker/>
